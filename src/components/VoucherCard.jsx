@@ -1,5 +1,12 @@
-export default function VoucherCard({ voucher, onDelete, onVer, onEditar }) {
-  const pdfUrl = `https://pousadapedrabrancas.onrender.com/vouchers/${voucher.id}/pdf`;
+export default function VoucherCard({
+  voucher,
+  onDelete,
+  onVer,
+  onEditar,
+}) {
+  // 👉 URL FIXA DO BACKEND (RENDER)
+  const API_BASE = "https://pousadapedrabrancas.onrender.com";
+  const pdfUrl = `${API_BASE}/vouchers/${voucher.id}/pdf`;
 
   return (
     <div
@@ -12,22 +19,29 @@ export default function VoucherCard({ voucher, onDelete, onVer, onEditar }) {
       }}
     >
       {/* TOPO */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <strong>{voucher.empresa || "Empresa não informada"}</strong>
 
-        <button
-          onClick={() => onDelete(voucher.id)}
-          title="Excluir"
-          style={{
-            border: "none",
-            background: "transparent",
-            cursor: "pointer",
-            color: "#999",
-            fontSize: 16,
-          }}
-        >
-          🗑
-        </button>
+        {onDelete && (
+          <button
+            onClick={() => onDelete(voucher.id)}
+            title="Excluir"
+            style={{
+              border: "none",
+              background: "transparent",
+              cursor: "pointer",
+              fontSize: 16,
+            }}
+          >
+            🗑
+          </button>
+        )}
       </div>
 
       {/* INFO */}
@@ -35,7 +49,7 @@ export default function VoucherCard({ voucher, onDelete, onVer, onEditar }) {
         🏨 {voucher.hotel_nome || "Hotel não informado"}
       </div>
 
-      <div style={{ marginTop: 4 }}>
+      <div>
         📅 {voucher.checkin || "--"} → {voucher.checkout || "--"}
       </div>
 
@@ -56,13 +70,14 @@ export default function VoucherCard({ voucher, onDelete, onVer, onEditar }) {
             color: "#1e6bd6",
             cursor: "pointer",
             padding: 0,
+            fontSize: 14,
           }}
         >
           Ver detalhes →
         </button>
 
         <div style={{ display: "flex", gap: 8 }}>
-          {/* PDF — LINK DIRETO (FUNCIONA NO CELULAR) */}
+          {/* ✅ PDF — LINK ABSOLUTO (FUNCIONA NO CELULAR) */}
           <a
             href={pdfUrl}
             target="_blank"
@@ -79,21 +94,24 @@ export default function VoucherCard({ voucher, onDelete, onVer, onEditar }) {
             PDF
           </a>
 
-          <button
-            onClick={onEditar}
-            style={{
-              background: "#eee",
-              border: "none",
-              padding: "6px 12px",
-              borderRadius: 8,
-              cursor: "pointer",
-              fontSize: 14,
-            }}
-          >
-            Editar
-          </button>
+          {onEditar && (
+            <button
+              onClick={onEditar}
+              style={{
+                background: "#eee",
+                border: "none",
+                padding: "6px 12px",
+                borderRadius: 8,
+                cursor: "pointer",
+                fontSize: 14,
+              }}
+            >
+              Editar
+            </button>
+          )}
         </div>
       </div>
     </div>
   );
 }
+
