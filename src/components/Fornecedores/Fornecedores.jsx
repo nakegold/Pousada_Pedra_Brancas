@@ -49,76 +49,76 @@ export default function Fornecedores() {
   }
 
   return (
-    <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 16px" }}>
+  <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 16px" }}>
 
-      {/* ================= FORNECEDORES DE OPERAÇÃO ================= */}
-      <h2 style={{ marginTop: 10 }}>Fornecedores de Operações — 2026</h2>
+    {/* ===== FORNECEDORES DE OPERAÇÃO ===== */}
+    <h2 style={{ marginTop: 10 }}>Fornecedores de Operações — 2026</h2>
 
-      {telaOp === "dashboard" && (
-        <DashboardOperacoes
-          onVerMes={(mes) => {
-            setMesSelecionado(mes);
-            setTelaOp("lista");
-          }}
-        />
-      )}
+    {telaOp === "dashboard" && (
+      <DashboardOperacoes
+        onVerMes={(mes) => {
+          setMesSelecionado(mes);
+          setTelaOp("lista");
+        }}
+      />
+    )}
 
-      {telaOp === "lista" && (
-        <ListaOperacoesMes
-          mes={mesSelecionado}
-          voltar={() => setTelaOp("dashboard")}
-        />
-      )}
+    {telaOp === "lista" && (
+      <ListaOperacoesMes
+        mes={mesSelecionado}
+        voltar={() => setTelaOp("dashboard")}
+      />
+    )}
 
-      <hr style={{ margin: "40px 0" }} />
+    <hr style={{ margin: "30px 0" }} />
 
-      {/* ================= FORNECEDORES NORMAIS ================= */}
-      {tela === "dashboard" && (
-        <FornecedoresDashboard
-          fornecedores={fornecedores}
-          onNovo={() => setTela("novo")}
-          onVerLista={() => setTela("lista")}
-        />
-      )}
+    {/* ===== FORNECEDORES NORMAIS ===== */}
+    {tela === "dashboard" && (
+      <FornecedoresDashboard
+        fornecedores={fornecedores}
+        onNovo={() => setTela("novo")}
+        onVerLista={() => setTela("lista")}
+      />
+    )}
 
-      {tela === "lista" && (
-        <FornecedorList
-          fornecedores={fornecedores}
-          onNovo={() => setTela("novo")}
-          onVoltar={() => setTela("dashboard")}
-          onVer={(f) => {
-            setFornecedorSelecionado(f);
-            setTela("ver");
-          }}
-          onEditar={(f) => {
-            setFornecedorSelecionado(f);
-            setTela("editar");
-          }}
-          onExcluir={deletarFornecedor}
-        />
-      )}
+    {tela === "lista" && (
+      <FornecedorList
+        fornecedores={fornecedores}
+        onNovo={() => setTela("novo")}
+        onVoltar={() => setTela("dashboard")}
+        onVer={(f) => {
+          setFornecedorSelecionado(f);
+          setTela("ver");
+        }}
+        onEditar={(f) => {
+          setFornecedorSelecionado(f);
+          setTela("editar");
+        }}
+        onExcluir={deletarFornecedor}
+      />
+    )}
 
-      {tela === "novo" && (
-        <FornecedorForm
-          onSalvar={criarFornecedor}
-          onCancelar={() => setTela("lista")}
-        />
-      )}
+    {tela === "novo" && (
+      <FornecedorForm
+        onSalvar={criarFornecedor}
+        onCancelar={() => setTela("lista")}
+      />
+    )}
 
-      {tela === "ver" && fornecedorSelecionado && (
-        <FornecedorDetalhe
-          fornecedor={fornecedorSelecionado}
-          onVoltar={() => setTela("lista")}
-        />
-      )}
+    {tela === "ver" && fornecedorSelecionado && (
+      <FornecedorDetalhe
+        fornecedor={fornecedorSelecionado}
+        onVoltar={() => setTela("lista")}
+      />
+    )}
 
-      {tela === "editar" && fornecedorSelecionado && (
-        <FornecedorForm
-          fornecedorInicial={fornecedorSelecionado}
-          onSalvar={criarFornecedor} // depois troca pra PUT
-          onCancelar={() => setTela("lista")}
-        />
-      )}
-    </div>
-  );
-}
+    {tela === "editar" && fornecedorSelecionado && (
+      <FornecedorForm
+        fornecedorInicial={fornecedorSelecionado}
+        onSalvar={criarFornecedor} // depois trocamos pra PUT
+        onCancelar={() => setTela("lista")}
+      />
+    )}
+  </div>
+);
+
