@@ -3,13 +3,20 @@ import FornecedoresDashboard from "./FornecedoresDashboard";
 import FornecedorList from "./FornecedorList";
 import FornecedorForm from "./FornecedorForm";
 import FornecedorDetalhe from "./FornecedorDetalhe";
+import DashboardOperacoes from "./DashboardOperacoes";
+import ListaOperacoesMes from "./ListaOperacoesMes";
 
 export default function Fornecedores() {
+  // fornecedores normais
   const [tela, setTela] = useState("dashboard"); 
   // dashboard | lista | novo | ver | editar
 
   const [fornecedores, setFornecedores] = useState([]);
   const [fornecedorSelecionado, setFornecedorSelecionado] = useState(null);
+
+  // fornecedores de operação
+  const [telaOp, setTelaOp] = useState("dashboard"); // dashboard | lista
+  const [mesSelecionado, setMesSelecionado] = useState(null);
 
   function carregarFornecedores() {
     fetch("https://pousadapedrabrancas.onrender.com/fornecedores")
@@ -43,6 +50,29 @@ export default function Fornecedores() {
 
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 16px" }}>
+
+      {/* ================= FORNECEDORES DE OPERAÇÃO ================= */}
+      <h2 style={{ marginTop: 10 }}>Fornecedores de Operações — 2026</h2>
+
+      {telaOp === "dashboard" && (
+        <DashboardOperacoes
+          onVerMes={(mes) => {
+            setMesSelecionado(mes);
+            setTelaOp("lista");
+          }}
+        />
+      )}
+
+      {telaOp === "lista" && (
+        <ListaOperacoesMes
+          mes={mesSelecionado}
+          voltar={() => setTelaOp("dashboard")}
+        />
+      )}
+
+      <hr style={{ margin: "40px 0" }} />
+
+      {/* ================= FORNECEDORES NORMAIS ================= */}
       {tela === "dashboard" && (
         <FornecedoresDashboard
           fornecedores={fornecedores}
@@ -85,7 +115,7 @@ export default function Fornecedores() {
       {tela === "editar" && fornecedorSelecionado && (
         <FornecedorForm
           fornecedorInicial={fornecedorSelecionado}
-          onSalvar={criarFornecedor} // depois a gente troca pra PUT
+          onSalvar={criarFornecedor} // depois troca pra PUT
           onCancelar={() => setTela("lista")}
         />
       )}
