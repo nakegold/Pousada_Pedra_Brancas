@@ -44,7 +44,7 @@ const [mesSelecionado, setMesSelecionado] = useState(null);
       carregarFornecedores();
       setTela("lista");
     });
-  }
+  } 
 
   function deletarFornecedor(id) {
     if (!confirm("Deseja excluir este fornecedor?")) return;
