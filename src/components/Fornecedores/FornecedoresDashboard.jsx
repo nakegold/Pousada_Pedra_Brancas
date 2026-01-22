@@ -41,19 +41,22 @@ export default function FornecedoresDashboard({
       >
         Ver Lista
       </button>
-    </>
-  );
-}
 
-    <button
+      {/* ✅ BOTÃO EXCEL (VERDE) */}
+      <button
         onClick={() =>
-          window.open("https://pousadapedrabrancas.onrender.com/excel/fornecedores")
+          window.open(
+            "https://pousadapedrabrancas.onrender.com/excel/fornecedores",
+            "_blank"
+          )
         }
-        style={{ ...btnGray, marginTop: 10 }}
+        style={{ ...btnExcel, marginTop: 10 }}
       >
         📥 Exportar Excel
       </button>
-
+    </>
+  );
+}
 
 function Card({ titulo, valor }) {
   return (
@@ -82,6 +85,15 @@ const btnPrimary = {
 
 const btnGray = {
   background: "#eee",
+  border: "none",
+  padding: "10px 18px",
+  borderRadius: 10,
+  cursor: "pointer",
+};
+
+const btnExcel = {
+  background: "#2ecc71", // ✅ verde
+  color: "#fff",
   border: "none",
   padding: "10px 18px",
   borderRadius: 10,
