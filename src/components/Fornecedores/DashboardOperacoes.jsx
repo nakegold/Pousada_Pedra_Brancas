@@ -3,6 +3,7 @@ export default function DashboardOperacoes({ onVerMes }) {
     "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
     "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
   ];
+  
 
   return (
     <>
@@ -11,7 +12,11 @@ export default function DashboardOperacoes({ onVerMes }) {
         Organização mensal dos fornecedores de operação — 2026
       </p>
 
-      <div
+      <button style={btnPrimary} onClick={onNovo}>
+        + Novo Fornecedor de Operação
+      </button>
+
+       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(160px,1fr))",
@@ -43,3 +48,4 @@ const card = {
   boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
   cursor: "pointer",
 };
+
