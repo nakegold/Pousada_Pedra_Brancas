@@ -13,6 +13,10 @@ export default function OperacaoForm({ onSalvar, onCancelar }) {
   function setCampo(c, v) {
     setForm((f) => ({ ...f, [c]: v }));
   }
+  
+  export default function OperacaoForm({ onSalvar, onCancelar, operacaoInicial }) {
+  const [form, setForm] = useState(operacaoInicial || modelo);
+
 
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 16px" }}>
@@ -128,3 +132,4 @@ const btnLink = {
   cursor: "pointer",
   fontSize: 14,
 };
+
