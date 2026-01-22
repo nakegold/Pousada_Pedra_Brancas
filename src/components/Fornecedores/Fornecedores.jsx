@@ -61,16 +61,17 @@ export default function Fornecedores() {
         <>
           {/* DASHBOARD FORNECEDORES NORMAIS */}
           <FornecedoresDashboard
-            fornecedores={fornecedores}
-            onNovo={() => {
-              setTelaOperacao("dashboard"); // reset operações
-              setTelaFornecedor("novo");
-            }}
-            onVerLista={() => {
-              setTelaOperacao("dashboard"); // reset operações
-              setTelaFornecedor("lista");
-            }}
-          />
+          fornecedores={fornecedores}
+          onNovo={() => {
+            setTelaFornecedor("novo");
+            setTelaOperacao("dashboard"); // RESET OPERAÇÕES
+          }}
+          onVerLista={() => {
+            setTelaFornecedor("lista");
+            setTelaOperacao("dashboard"); // RESET OPERAÇÕES
+          }}
+        />
+
 
           {/* DASHBOARD OPERAÇÕES (ABAIXO) */}
           <div style={{ marginTop: 40 }}>
