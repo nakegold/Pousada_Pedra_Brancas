@@ -6,24 +6,14 @@ export default function DashboardOperacoes({ onVerMes, onNovo }) {
 
   return (
     <>
-      {/* ✅ BOTÃO EXCEL (VERDE) */}
-      <button
-        onClick={() =>
-          window.open(
-            "https://pousadapedrabrancas.onrender.com/excel/operacoes",
-            "_blank"
-          )
-        }
-        style={{ ...btnExcel, marginBottom: 16 }}
-      >
-        📥 Exportar Excel — Operações 2026
-      </button>
-
+      {/* ✅ TÍTULO + BOTÕES NA MESMA LINHA */}
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          gap: 10,
+          flexWrap: "wrap",
         }}
       >
         <div>
@@ -33,9 +23,23 @@ export default function DashboardOperacoes({ onVerMes, onNovo }) {
           </p>
         </div>
 
-        <button style={btnPrimary} onClick={onNovo}>
-          + Novo Fornecedor de Operação
-        </button>
+        <div style={{ display: "flex", gap: 10 }}>
+          <button style={btnPrimary} onClick={onNovo}>
+            + Novo Fornecedor de Operação
+          </button>
+
+          <button
+            onClick={() =>
+              window.open(
+                "https://pousadapedrabrancas.onrender.com/excel/operacoes",
+                "_blank"
+              )
+            }
+            style={btnExcel}
+          >
+            📥 Exportar Excel
+          </button>
+        </div>
       </div>
 
       <div
@@ -81,7 +85,7 @@ const btnPrimary = {
 };
 
 const btnExcel = {
-  background: "#2ecc71", // ✅ verde
+  background: "#2ecc71",
   color: "#fff",
   border: "none",
   padding: "10px 18px",
