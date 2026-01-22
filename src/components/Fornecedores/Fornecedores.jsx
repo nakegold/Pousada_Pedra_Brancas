@@ -53,6 +53,17 @@ export default function Fornecedores() {
       method: "DELETE",
     }).then(() => carregarFornecedores());
   }
+  
+  function criarOperacao(nova) {
+  fetch("https://pousadapedrabrancas.onrender.com/operacoes", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(nova),
+  }).then(() => {
+    setTelaOperacao("dashboard");
+  });
+}
+
 
   // ================= RENDER =================
   return (
