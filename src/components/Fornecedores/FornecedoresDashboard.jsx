@@ -45,6 +45,16 @@ export default function FornecedoresDashboard({
   );
 }
 
+    <button
+        onClick={() =>
+          window.open("https://pousadapedrabrancas.onrender.com/excel/fornecedores")
+        }
+        style={{ ...btnGray, marginTop: 10 }}
+      >
+        📥 Exportar Excel
+      </button>
+
+
 function Card({ titulo, valor }) {
   return (
     <div style={card}>
