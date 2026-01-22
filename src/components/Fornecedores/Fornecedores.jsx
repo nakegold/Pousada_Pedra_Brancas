@@ -4,16 +4,17 @@ import FornecedoresDashboard from "./FornecedoresDashboard";
 import FornecedorList from "./FornecedorList";
 import FornecedorForm from "./FornecedorForm";
 import FornecedorDetalhe from "./FornecedorDetalhe";
-
+import OperacaoForm from "./OperacaoForm";
 import DashboardOperacoes from "./DashboardOperacoes";
 import ListaOperacoesMes from "./ListaOperacoesMes";
 
 export default function Fornecedores() {
   // ===== TELAS =====
   const [telaFornecedor, setTelaFornecedor] = useState("dashboard");
-  // dashboard | lista | novo | ver | editar
+  
+  const [telaOperacao, setTelaOperacao] = useState("dashboard"); 
+// dashboard | lista | novo
 
-  const [telaOperacao, setTelaOperacao] = useState("dashboard");
   // dashboard | lista
 
   const [mesSelecionado, setMesSelecionado] = useState(null);
