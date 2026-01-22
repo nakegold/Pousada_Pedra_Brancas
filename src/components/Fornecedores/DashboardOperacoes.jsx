@@ -3,27 +3,29 @@ export default function DashboardOperacoes({ onVerMes, onNovo }) {
     "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
     "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
   ];
-  
-  <button
-  onClick={() =>
-    window.open("https://pousadapedrabrancas.onrender.com/excel/operacoes")
-  }
-  style={{
-    background: "#1e6bd6",
-    color: "#fff",
-    border: "none",
-    padding: "10px 18px",
-    borderRadius: 10,
-    cursor: "pointer",
-    marginBottom: 16,
-  }}
->
-  📥 Excel — Operações 2026
-</button>
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      {/* ✅ BOTÃO EXCEL (VERDE) */}
+      <button
+        onClick={() =>
+          window.open(
+            "https://pousadapedrabrancas.onrender.com/excel/operacoes",
+            "_blank"
+          )
+        }
+        style={{ ...btnExcel, marginBottom: 16 }}
+      >
+        📥 Exportar Excel — Operações 2026
+      </button>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <div>
           <h1>Fornecedores de Operações</h1>
           <p style={{ color: "#666" }}>
@@ -78,3 +80,11 @@ const btnPrimary = {
   cursor: "pointer",
 };
 
+const btnExcel = {
+  background: "#2ecc71", // ✅ verde
+  color: "#fff",
+  border: "none",
+  padding: "10px 18px",
+  borderRadius: 10,
+  cursor: "pointer",
+};
