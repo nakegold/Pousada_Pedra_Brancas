@@ -3,6 +3,23 @@ export default function DashboardOperacoes({ onVerMes, onNovo }) {
     "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
     "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
   ];
+  
+  <button
+  onClick={() =>
+    window.open("https://pousadapedrabrancas.onrender.com/excel/operacoes")
+  }
+  style={{
+    background: "#1e6bd6",
+    color: "#fff",
+    border: "none",
+    padding: "10px 18px",
+    borderRadius: 10,
+    cursor: "pointer",
+    marginBottom: 16,
+  }}
+>
+  📥 Excel — Operações 2026
+</button>
 
   return (
     <>
@@ -60,3 +77,4 @@ const btnPrimary = {
   borderRadius: 10,
   cursor: "pointer",
 };
+
