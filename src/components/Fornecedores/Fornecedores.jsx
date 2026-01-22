@@ -4,18 +4,18 @@ import FornecedoresDashboard from "./FornecedoresDashboard";
 import FornecedorList from "./FornecedorList";
 import FornecedorForm from "./FornecedorForm";
 import FornecedorDetalhe from "./FornecedorDetalhe";
-
+import OperacaoForm from "./OperacaoForm";
 import DashboardOperacoes from "./DashboardOperacoes";
 import ListaOperacoesMes from "./ListaOperacoesMes";
-import OperacaoForm from "./OperacaoForm";
 
 export default function Fornecedores() {
   // ===== TELAS =====
   const [telaFornecedor, setTelaFornecedor] = useState("dashboard");
-  // dashboard | lista | novo | ver | editar
+  
+  const [telaOperacao, setTelaOperacao] = useState("dashboard"); 
+// dashboard | lista | novo
 
-  const [telaOperacao, setTelaOperacao] = useState("dashboard");
-  // dashboard | lista | novo
+  // dashboard | lista
 
   const [mesSelecionado, setMesSelecionado] = useState(null);
 
@@ -53,16 +53,17 @@ export default function Fornecedores() {
       method: "DELETE",
     }).then(() => carregarFornecedores());
   }
-
+  
   function criarOperacao(nova) {
-    fetch("https://pousadapedrabrancas.onrender.com/operacoes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(nova),
-    }).then(() => {
-      setTelaOperacao("dashboard");
-    });
-  }
+  fetch("https://pousadapedrabrancas.onrender.com/operacoes", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(nova),
+  }).then(() => {
+    setTelaOperacao("dashboard");
+  });
+}
+
 
   // ================= RENDER =================
   return (
@@ -72,18 +73,19 @@ export default function Fornecedores() {
         <>
           {/* DASHBOARD FORNECEDORES NORMAIS */}
           <FornecedoresDashboard
-            fornecedores={fornecedores}
-            onNovo={() => {
-              setTelaFornecedor("novo");
-              setTelaOperacao("dashboard");
-            }}
-            onVerLista={() => {
-              setTelaFornecedor("lista");
-              setTelaOperacao("dashboard");
-            }}
-          />
+          fornecedores={fornecedores}
+          onNovo={() => {
+            setTelaFornecedor("novo");
+            setTelaOperacao("dashboard"); // RESET OPERAÇÕES
+          }}
+          onVerLista={() => {
+            setTelaFornecedor("lista");
+            setTelaOperacao("dashboard"); // RESET OPERAÇÕES
+          }}
+        />
 
-          {/* DASHBOARD OPERAÇÕES */}
+
+          {/* DASHBOARD OPERAÇÕES (ABAIXO) */}
           <div style={{ marginTop: 40 }}>
             {telaOperacao === "dashboard" && (
               <DashboardOperacoes
@@ -91,7 +93,6 @@ export default function Fornecedores() {
                   setMesSelecionado(mes);
                   setTelaOperacao("lista");
                 }}
-                onNovo={() => setTelaOperacao("novo")}
               />
             )}
 
@@ -99,13 +100,6 @@ export default function Fornecedores() {
               <ListaOperacoesMes
                 mes={mesSelecionado}
                 voltar={() => setTelaOperacao("dashboard")}
-              />
-            )}
-
-            {telaOperacao === "novo" && (
-              <OperacaoForm
-                onSalvar={criarOperacao}
-                onCancelar={() => setTelaOperacao("dashboard")}
               />
             )}
           </div>
@@ -150,7 +144,7 @@ export default function Fornecedores() {
       {telaFornecedor === "editar" && fornecedorSelecionado && (
         <FornecedorForm
           fornecedorInicial={fornecedorSelecionado}
-          onSalvar={criarFornecedor}
+          onSalvar={criarFornecedor} // depois trocamos pra PUT
           onCancelar={() => setTelaFornecedor("lista")}
         />
       )}
