@@ -1,17 +1,18 @@
 export default function DashboardOperacoes({ onVerMes, onNovo }) {
   const meses = [
-    "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
-    "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
   ];
 
   return (
     <>
       <h1>Fornecedores de Operações</h1>
+
       <p style={{ color: "#666" }}>
         Organização mensal dos fornecedores de operação — 2026
       </p>
 
-      {/* BOTÃO NOVO FORNECEDOR DE OPERAÇÃO */}
+      {/* ✅ BOTÃO NOVO FORNECEDOR DE OPERAÇÃO */}
       <button
         onClick={onNovo}
         style={{
@@ -27,13 +28,11 @@ export default function DashboardOperacoes({ onVerMes, onNovo }) {
         + Novo Fornecedor de Operação
       </button>
 
-      {/* MESES */}
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(160px,1fr))",
           gap: 16,
-          marginTop: 10,
         }}
       >
         {meses.map((mes, index) => (
@@ -59,5 +58,4 @@ const card = {
   borderRadius: 14,
   boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
   cursor: "pointer",
-  transition: "0.15s",
 };
