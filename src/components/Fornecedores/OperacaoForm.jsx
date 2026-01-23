@@ -3,6 +3,7 @@ import { useState } from "react";
 const modelo = {
   nome: "",
   endereco: "",
+  Operacao_Locacao: "", // ✅ novo campo
   data_inicio: "",
   data_fim: "",
   mes: "",
@@ -60,6 +61,13 @@ export default function OperacaoForm({
           label="Endereço"
           value={form.endereco}
           onChange={(v) => setCampo("endereco", v)}
+        />
+
+        {/* ✅ NOVO CAMPO */}
+        <Input
+          label="Operação de Locação"
+          value={form.Operacao_Locacao}
+          onChange={(v) => setCampo("Operacao_Locacao", v)}
         />
       </Section>
 
